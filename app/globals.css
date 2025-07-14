@@ -1,0 +1,811 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
+  background-color: rgb(46, 46, 46);
+  /* background: black; */
+/* } */
+
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: -20px 0 50px;
+  overflow: hidden;
+}
+
+h1{
+  font-weight: bold;
+  margin: 0;
+}
+
+p{
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span{
+  font-size: 12px;
+}
+
+a{
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+#container{
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow:0 14px 28px  rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+.head-er{
+  /* background: rgba(0, 0, 0, 0.4); */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.note-container{
+  overflow-y: scroll !important;
+  padding-bottom: 20px !important;
+  z-index: 2 !important;
+}
+.Form-container Form{
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social-container{
+  margin: 20px 0;
+}
+
+.social-container a{
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.Form-container input{
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width:100%;
+}
+
+button{
+  border-radius: 20px;
+  border: 1px solid #76ABAE;
+  background: #76ABAE;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active{
+  transform: scale(0.95);
+}
+
+button:focus{
+  outline: none;
+}
+
+button.ghost{
+  background: transparent;
+  border-color: #76ABAE;
+}
+
+.Form-container{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container{
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container{
+  left: 0;
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.overlay-container{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 10;
+}
+
+.overlay {
+  background: #31363F;
+  background: linear-gradient(to right, #76ABAE, #31363F) no-repeat 0 0 / cover;
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.mybg {
+  background: linear-gradient( #76ABAE, #31363F) no-repeat 0 0 / cover;
+}
+.overlay-panel{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-right{
+  right: 0;
+  transform: translateX(0);
+}
+.overlay-left{
+  transform: translateX(-20%);
+}
+
+/*animation*/
+/*move signin to the right*/
+.right-panel-active .sign-in-container{
+  transform: translateX(100%);
+}
+/*Mo ve overlay to left*/
+.right-panel-active .overlay-container{
+  transform: translateX(-100%);
+}
+
+
+/*Bring sign up over sign in*/
+.right-panel-active .sign-up-container{
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+/*Move overlay back to right*/
+.right-panel-active .overlay{
+  transform: translateX(50%);
+}
+
+.right-panel-active .overlay-left{
+  transform: translateX(0);
+}
+.right-panel-active .overlay-right{
+  transform: translateX(20%);
+}
+
+.modal {
+  box-sizing: content-box !important;
+  position: absolute !important;
+}
+.modal-container {
+  /* user-select: none;
+  pointer-events: none; */
+  height: 50px !important;
+  width: 45px !important;
+  background: rgb(95, 214, 212);
+  position: absolute !important;
+}
+
+.lot-manager{
+  min-width: 1000px;
+  max-width: 1000px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(55,55,55);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.navbar{
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 12%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  background-color: transparent;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-way{
+  font-size: 1rem;
+  display: inline-block;
+  padding: 0 10px;
+  border-radius: 15px;
+  background: #8ad1d4;
+  color: #333;
+  text-transform: uppercase;
+  text-align: center;
+}
+.light{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #0f0;
+  margin: 2px;
+}
+.light-red{
+  background: #f00;
+}
+.dashboard{
+  height: 88%;
+  width: 100%;
+  background: none;
+  display: flex;
+  gap: 20px;
+}
+.parking-container{
+  width: 90%;
+  height: 100%;
+  left: 0;
+  padding: 10px;
+  border-top: 5px dotted #eee;
+  border-bottom: 5px dotted #eee;
+}
+.parking-slots-holder{
+  height: 38%;
+  width: 95%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  justify-content: space-around;
+  margin: auto;
+
+}
+.parking-way{
+  height: 24%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  border-left: 3px #aaa dashed;
+  background: linear-gradient(to top, #5b595c, hwb(200 18% 81%)) ;
+  z-index: -1;
+}
+.way-line{
+  border: 1px dashed #fff;
+  width: 80%;
+  transform: translateX(10px);
+  position: fixed;
+}
+.parking-slot{
+  width: 20%;
+  outline: none;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background: url(../public/carpark.png) center center/cover;
+}
+.parking-slot-btm{
+  border-bottom: 1px solid #fff;
+  border-top: none !important;
+}
+.slot-header{
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #aaa;
+  text-align: center;
+  bottom: 0;
+}
+.slot-header-btm{
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #aaa;
+  text-align: center;
+  transform: rotate(180deg);
+}
+
+/* Parking entry and exit */
+.entry-exit{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.entry-exit-inner{
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 5px solid var(--background-toggling);
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+.entrance{
+  height: 25%;
+  width: 25%;
+  transform: rotate(270deg);
+  text-transform: uppercase;
+  color: #aaa;
+  margin: 5px;
+}
+
+img{
+  height: 120px;
+  width: auto;
+  z-index: 10;
+  /* display: none; */
+}
+#car-img{
+  height: 120px;
+  width: auto;
+  z-index: 10;
+  transform: rotate(270deg);
+}
+/* Animations */
+
+@keyframes car-park-1 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -700px);}
+  90% {transform: rotate(270deg) translate(0px, -700px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, -100px);}}
+.car-park-1{
+  display: block;
+  animation: car-park-1 2s linear forwards;
+}
+.car-exit-1{
+  display: block;
+  animation: car-exit-1 2s linear forwards;
+}
+
+@keyframes car-park-6 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -700px);}
+  90% {transform: rotate(270deg) translate(0px, -700px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, 100px);}}
+
+.car-park-6{
+  animation: car-park-6 2s linear forwards;
+}
+.car-exit-6{
+  animation: car-exit-6 2s linear ;
+}
+
+@keyframes car-park-2 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -520px);}
+  90% {transform: rotate(270deg) translate(0px, -520px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, -100px);}}
+
+.car-park-2{
+  animation: car-park-2 2s linear forwards;
+}
+.car-exit-2{
+  animation: car-exit-2 2s linear ;
+}
+@keyframes car-park-7 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -520px);}
+  90% {transform: rotate(270deg) translate(0px, -520px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, 100px);}}
+
+.car-park-7{
+  animation: car-park-7 2s linear forwards;
+}
+.car-exit-7{
+  animation: car-exit-7 2s linear ;
+}
+@keyframes car-park-3 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -350px);}
+  90% {transform: rotate(270deg) translate(0px, -350px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, -100px);}}
+
+.car-park-3{
+  animation: car-park-3 2s linear forwards;
+}
+.car-exit-3{
+  animation: car-exit-3 2s linear ;
+}
+@keyframes car-park-8 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -350px);}
+  90% {transform: rotate(270deg) translate(0px, -350px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, 100px);}}
+
+.car-park-8{
+  animation: car-park-8 2s linear forwards;
+}
+.car-exit-8{
+  animation: car-exit-8 2s linear ;
+}
+@keyframes car-park-4 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -200px);}
+  90% {transform: rotate(270deg) translate(0px, -200px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, -100px);}}
+
+.car-park-4{
+  animation: car-park-4 2s linear forwards;
+}
+.car-exit-4{
+  animation: car-exit-4 2s linear ;
+}
+.car-animate-none{
+  display: none;
+}
+@keyframes car-park-9 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -200px);}
+  90% {transform: rotate(270deg) translate(0px, -200px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, 100px);}}
+
+.car-park-9{
+  animation: car-park-9 2s linear forwards;
+}
+.car-exit-9{
+  animation: car-exit-9 2s linear ;
+}
+@keyframes car-park-5 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -40px);}
+  90% {transform: rotate(270deg) translate(0px, -40px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, -100px);}}
+.car-park-5{
+  animation: car-park-5 2s linear forwards;
+}
+.car-exit-5{
+  animation: car-exit-5 2s linear ;
+}
+@keyframes car-park-10 {
+  from {transform: rotate(270deg);}
+  80% {transform: rotate(270deg) translate(0px, -40px);}
+  90% {transform: rotate(270deg) translate(0px, -40px) rotate(90deg); }
+  to {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, 100px);}}
+.car-park-10{
+  animation: car-park-10 2s linear forwards;
+}
+.car-exit-10{
+  animation: car-exit-10 2s linear ;
+}
+@keyframes car-exit-1 {
+  from {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, -100px);}
+  80% {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, -100px) translate(0px, 100px);opacity: 1;}
+  90% {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg);opacity: 0.8;}
+  to {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg) translate(0px, -700px); opacity: 0;}}
+
+@keyframes car-exit-6 {
+  from {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, 100px);}
+  80% {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, 100px) translate(0px, -100px);}
+  90% {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -700px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg) translate(0px, -700px);}}
+
+@keyframes car-exit-2 {
+  from {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, -100px);}
+  80% {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, -100px) translate(0px, 100px);}
+  90% {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-7 {
+  from {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, 100px);}
+  80% {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, 100px) translate(0px, -100px);}
+  90% {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -520px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-3 {
+  from {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, -100px);}
+  80% {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, -100px) translate(0px, 100px);}
+  90% {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-8 {
+  from {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, 100px);}
+  80% {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, 100px) translate(0px, -100px);}
+  90% {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -350px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-4 {
+  from {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, -100px);}
+  80% {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, -100px) translate(0px, 100px);}
+  90% {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-9 {
+  from {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, 100px);}
+  80% {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, 100px) translate(0px, -100px);}
+  90% {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -200px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-5 {
+  from {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, -100px);}
+  80% {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, -100px) translate(0px, 100px);}
+  90% {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, -100px) translate(0px, 100px) rotate(90deg) translate(0px, -5200px);}}
+
+@keyframes car-exit-10 {
+  from {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, 100px);}
+  80% {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, 100px) translate(0px, -100px);}
+  90% {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg);}
+  to {transform: rotate(270deg) translate(0px, -40px) rotate(90deg) translate(0px, 100px) translate(0px, -100px) rotate(90deg) translate(0px, -5200px);}}
+
+
+
+
+/* LANDING PAGE STYLES */
+
+
+/* 
+.container{
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow:0 14px 28px  rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+.forms-container{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 430px;
+}
+
+.form-container form{
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.main-nav{
+  position: absolute;
+  height: 50px;
+  top: 0; */
+  /* background: linear-gradient(to right, #76ABAE, #31363F) no-repeat 0 0 / cover; */
+  /* background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+}
+
+.social-container{
+  margin: 20px 0;
+}
+
+.social-container a{
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.form-container input{
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width:100%;
+} */
+/* .btn-input{
+  margin: 8px 0;
+  width:100% !important;	
+  border-radius: 0;
+}
+.main-page{
+  max-width: 800px ;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(50%, 50%); */
+/* } */ 
+
+/* button{
+  border-radius: 20px;
+  border: 1px solid #76ABAE;
+  background: #76ABAE;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+.btn-home{
+  margin: 10px 0;
+  padding: 20px 45px;
+  width: 220px;
+  height: 60px;
+  text-wrap: nowrap;
+  
+}
+.btn-home:hover{
+  background-color: #33585a;
+}
+button:active{
+  transform: scale(0.95);
+}
+
+button:focus{
+  outline: none;
+}
+
+button.ghost{
+  border-color: #76ABAE;
+}
+
+.form-container{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container{
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+.reserve{
+  display: flex;
+  gap: 2px;
+  text-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.balance{
+  font-weight: 900;
+}
+
+.sign-up-container{
+  left: 0;
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+} */
+
+/* .overlay-container{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 10;
+}
+
+.overlay {
+  background: #31363F;
+  background: linear-gradient(to right, #76ABAE, #31363F) no-repeat 0 0 / cover;
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-right{
+  right: 0;
+  transform: translateX(0);
+}
+.overlay-left{
+  transform: translateX(-20%);
+}
+
+
+.container.right-panel-active .sign-in-container{
+  transform: translateX(100%);
+}
+
+
+.container.right-panel-active .overlay-container{
+  transform: translateX(-100%);
+}
+
+
+
+.container.right-panel-active .sign-up-container{
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.container.right-panel-active .overlay{
+  transform: translateX(50%);
+}
+
+.container.right-panel-active .overlay-left{
+  transform: translateX(0);
+}
+.container.right-panel-active .overlay-right{
+  transform: translateX(20%);
+}
+ */
