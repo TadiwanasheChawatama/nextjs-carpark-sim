@@ -1,12 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import backend from "./servers/backend";
+import { getUserLot } from "./servers/actions/serverActions";
+
+  // Fetch user lot from backend
+  
 
 function ParkingManager(props) {
   // usestate variables for manipulating the DOM
   let user = JSON.parse(localStorage.getItem("userLot"))
-
-  
 
 
   const [isParked, carPark] = useState();
