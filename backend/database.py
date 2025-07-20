@@ -1,13 +1,15 @@
-#database.py file
-import sqlalchemy as _sql
-import sqlalchemy.ext.declarative as _declarative
-import sqlalchemy.orm as _orm
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "mysql://root:@localhost:3306/backend"
+# Use docker-compose service name "db" as host
+DATABASE_URL = "mysql+pymysql://user:password@db:3306/backend"
 
-engine = _sql.create_engine(DATABASE_URL)
+# Create SQLAlchemy engine
+engine = create_engine(DATABASE_URL)
 
-SessionLocal = _orm.sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# SessionLocal class for DB sessions
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = _declarative.declarative_base()
-
+# Base class for models
+Base = declarative_base()

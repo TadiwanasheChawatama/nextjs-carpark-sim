@@ -63,6 +63,7 @@ export async function LogIn(formData) {
       getNotifications();
 
       // alert(responseData.name);
+      getUserLot();
       window.location.href = "/main";
       // history.push("/main")
       // revalidatePath("/main") // Not sure where this is defined
@@ -118,6 +119,7 @@ export async function getUserAccount() {
     //   console.log(responseData);
     //   alert(responseData.name);
     localStorage.setItem("useraccount", JSON.stringify(responseData));
+    getUserLot();
   }
 }
 
@@ -191,6 +193,7 @@ export async function reserveLot(hours, bookStat) {
       alert("Error occurred on the server!");
     } else {
       getUser(); // Refresh the user data
+      getUserLot();
       window.location.href = "/main"; // Navigate to the main page
     }
   } catch (error) {
@@ -201,7 +204,8 @@ export async function reserveLot(hours, bookStat) {
 
 
 
-export async function getUserLot(user) {
+export async function getUserLot() {
+  const user = JSON.parse(localStorage.getItem("casestudyuser"));
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
